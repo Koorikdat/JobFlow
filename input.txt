@@ -1,0 +1,46 @@
+Maisam Anjum
+anjummaisam@gmail.com | 647-677-4995 | linkedin.com/in/maisam-anjum
+Greater Toronto Area
+
+EDUCATION
+BSc Computer Science, Statistics Minor — Brock University, St Catharines, ON (June 2025)
+Coursework: Data Structures & Algorithms, Cybersecurity, Data Science, Machine Learning, Computer Architecture
+
+EXPERIENCE
+
+Software Engineer — University of Toronto / T-CAIREM (April 2025 – June 2025) | Toronto, ON
+- Collaborative ML project with University Health Network at Hull-Ellis Concussion Clinic
+- Built a React-based Azure web app to process patient video/audio data for concussion triaging, integrating OpenAI API to generate clinical reports and streamline the diagnostic process
+- Developed a supervised patient severity detection system using an annotated image dataset, predicting continuous scores via a GCN implemented in Keras/TensorFlow with landmark features extracted using Google MediaPipe
+
+Data Engineer — RBC (January 2024 – August 2024) | Toronto, ON
+- Used Pandas and Matplotlib to analyze high-exposure positions and built interactive dashboards, eliminating the need for manual data searches and enabling instant access to key risk information
+- Streamlined an automated document scraping system across thousands of multi-format files, reducing hours of weekly manual labour; built scripts to monitor KPIs, analyze risk data, and schedule processes on UNIX servers
+- Built a data pipeline used by 20+ people for international stress testing policy analysis using Plotly, NumPy, and Pandas
+- Led development of Project Hawkeye, a proprietary LLM-based automation tool that processed 10,000+ legal reports using the OpenAI API, enabling instant document retrieval and significantly reducing manual workload across multiple departments
+
+Research Assistant — Brock University (May 2023 – Present) | St Catharines, ON
+- Conducted NLP research addressing symmetry, reflexivity, and transitivity challenges in LLMs; developed techniques to reduce hallucinations using GPT-3, GPT-4, and LLaMA-1
+- Built a cross-platform Flutter app matching clients with volunteers using geolocation, chat, a matching algorithm, and live transit/weather APIs; integrated data logging for user behavior analysis
+- Designed a novel multi-objective recommender system GCN architecture to debias and improve personalization across user-item interactions, benchmarked against LightGCN, UltraGCN, and CAGCN
+
+Site Reliability Engineer — President's Choice Financial (May 2022 – August 2022) | Toronto, ON
+- Built internal analytics infrastructure and automated cross-platform tooling integrating JIRA, GCP, Alertmanager, PagerDuty, Kibana, and ServiceNow to streamline failure communication and improve uptime
+- Reduced Helm Chart deployment time and cloud resource usage by 65% by standardizing Docker images and applying performance-optimized code; worked closely with dev and data science teams on CI/CD pipelines using Kubernetes, GCP, and Jenkins
+- Configured and deployed Docker containers on UNIX servers to support production environments across multiple teams
+- Created production monitoring dashboards and backend APIs, enabling real-time visibility into business-critical system metrics
+
+Web Developer — Civiconnect (January 2022 – April 2022)
+- Full-stack web development including prototyping, development, and user testing for responsive, mobile-friendly websites
+- Built Shopify-integrated e-commerce sites using Django, AWS hosting, and SSL-secured domains
+- Worked directly with stakeholders in agile sprints, communicating technical and financial tradeoffs and delivering on client requirements
+
+SKILLS
+Languages: Python, Java, JavaScript, C#, R, SQL
+Frameworks & Libraries: React.js, Django, Flutter, Pandas, NumPy, Plotly, Matplotlib, PyTorch, TensorFlow, Keras, Scikit-learn
+Infrastructure & DevOps: Kubernetes, Docker, GCP, AWS, Azure, Jenkins, Helm, CI/CD
+Data & ML: LLMs, GCN, NLP, MediaPipe, OpenAI API, Feature Engineering, Recommender Systems
+Tools: JIRA, PagerDuty, Kibana, ServiceNow, Alertmanager, Firebase, Git, UNIX
+
+PROJECTS
+Personal job scraper aggregating postings from Greenhouse, Ashby, Lever, and Workday using threaded API calls, Playwright headless browser automation for bot-protected tenants, and SQLite storage — currently indexing 10,000+ live job postings across 100+ companies

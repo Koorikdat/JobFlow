@@ -1,0 +1,26 @@
+Senior Software Engineer - Python/Backend
+Company: TechCorp Inc.
+
+We're looking for a Senior Software Engineer with strong Python expertise to lead our backend infrastructure team.
+
+Key Responsibilities:
+- Design and architect scalable Python-based services
+- Lead technical design reviews and mentor junior engineers
+- Optimize database queries and improve system performance
+- Build data pipelines for machine learning applications
+- Deploy and manage infrastructure using Kubernetes and Docker
+- Collaborate with product team on feature prioritization
+
+Required Skills:
+- 5+ years of Python development experience
+- Strong understanding of distributed systems
+- Experience with SQL and NoSQL databases
+- Proficiency with Docker and Kubernetes
+- Git and modern CI/CD practices
+- Data structures and algorithms expertise
+
+Nice to Have:
+- Machine Learning infrastructure experience
+- GCP or AWS cloud platform experience
+- Open source contributions
+- Experience with recommendation systems or data engineering

@@ -1,0 +1,20 @@
+# Virtual Environments
+.venv/
+venv/
+env/
+
+# Data and Databases
+*.db
+*.sqlite3
+jobflow.db
+
+# Project Folders to Ignore
+output/
+frontend/node_modules/
+
+# OS specific
+.DS_Store
+
+# Playwright/Browsers
+.cache/
+ms-playwright/

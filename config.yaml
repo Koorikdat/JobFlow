@@ -1,0 +1,71 @@
+# ── Output ────────────────────────────────────────────────────────────────────
+output_path: output/resume.pdf
+format: pdf
+
+# ── Page ──────────────────────────────────────────────────────────────────────
+max_pages: 1                          # strict single page, always
+
+# ── Section order ─────────────────────────────────────────────────────────────
+section_order:
+  - education
+  - skills
+  - experience
+  - projects                          # injected only when relevant (see below)
+  - research                          # injected only when relevant
+
+# ── Content limits ────────────────────────────────────────────────────────────
+max_bullets: 4                        # max bullets per job entry
+max_jobs: 5                           # max experience entries to render
+max_skills: 15                        # max skills in the flat list
+
+# ── Experience selection ──────────────────────────────────────────────────────
+job_selection: relevant_then_recent   # LLM picks most relevant, ties broken by recency
+
+# ── Projects ──────────────────────────────────────────────────────────────────
+include_projects: false               # OFF by default — most submissions won't show this
+projects_when_relevant: true          # LLM turns on if job description strongly matches
+max_projects: 2
+
+# ── Research ──────────────────────────────────────────────────────────────────
+include_research: false               # OFF by default — only for academic/ML roles
+research_when_relevant: true
+
+# ── Summary ───────────────────────────────────────────────────────────────────
+include_summary: false                # no summary section, matches your current resume
+
+# ── LLM behaviour ─────────────────────────────────────────────────────────────
+model: mistral:7b-instruct
+tailor_bullets: true                  # rewrite bullets to match job when --job-id used
+bullet_faithfulness: high             # stay nearly identical to original on all bullets
+freestyle_last_bullet: true           # one bullet per role may be rewritten freely
+freestyle_confidence_threshold: 0.85  # only freestyle if model is highly confident
+generate_summary: false
+max_job_description_chars: 3000       # truncation limit passed to LLM
+
+# ── Targeting (no --job-id) ───────────────────────────────────────────────────
+target_roles:
+  - Data Engineer
+  - ML Engineer
+  - Software Engineer
+  - Backend Engineer
+target_keywords:
+  - Python
+  - LLM
+  - data pipelines
+  - machine learning
+  - SQL
+  - ETL
+  - 
+
+# ── File naming ───────────────────────────────────────────────────────────────
+auto_name_output: true                # Maisam_Anjum_<Company>_<Role>.pdf when targeted
+candidate_name: Maisam Anjum
+
+# ── PDF styling — matches existing resume exactly ─────────────────────────────
+font: Helvetica
+font_size_name: 14
+font_size_section: 10.5
+font_size_body: 9.5
+margin_inches: 0.5
+skills_label: "Languages and Technologies"  # section header matches your resume
+skills_display: flat                         # single bullet, comma-separated
