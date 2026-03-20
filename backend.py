@@ -45,7 +45,7 @@ class TailorRequest(BaseModel):
     job_url: str
     company: str
     role: str
-    input_file: str = "input.txt"
+    input_file: str = "data/input.txt"
     config_file: str = "config/default.yaml"
 
 

@@ -15,7 +15,22 @@ def call_llm(prompt: str) -> dict:
         capture_output=True
     )
     output = result.stdout.strip()
-    return json.loads(output)
+    
+    # Extract JSON from output (handles cases where model returns extra text)
+    json_str = extract_json(output)
+    return json.loads(json_str)
+
+
+def extract_json(text: str) -> str:
+    """Extract JSON object from text that may contain extra content."""
+    # Find the first '{' and last '}'
+    start = text.find('{')
+    end = text.rfind('}')
+    
+    if start == -1 or end == -1 or start > end:
+        raise ValueError(f"No valid JSON found in output: {text[:200]}")
+    
+    return text[start:end + 1]
 
 
 def build_prompt(raw_text: str) -> str:

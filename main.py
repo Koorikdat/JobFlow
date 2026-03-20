@@ -21,7 +21,7 @@ def main():
     parser.add_argument("--job", type=str, help="Job posting text or description")
     parser.add_argument("--company", type=str, help="Company name (for output filename)")
     parser.add_argument("--role", type=str, help="Job role/title (for output filename)")
-    parser.add_argument("--input", type=str, default="input.txt", help="Path to resume input file")
+    parser.add_argument("--input", type=str, default="data/input.txt", help="Path to resume input file")
     parser.add_argument("--config", type=str, default="config/default.yaml", help="Path to config file")
     parser.add_argument("--output-dir", type=str, default="output", help="Output directory")
     

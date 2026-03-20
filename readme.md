@@ -40,6 +40,88 @@ Workday implementations vary significantly in their bot-detection capabilities. 
 
 ---
 
+## Processing Pipeline
+
+JobFlow operates through a multi-stage pipeline that transforms raw job postings into tailored, publication-ready resumes:
+
+```
+┌─────────────┐     ┌──────────────┐     ┌──────────────┐     ┌─────────────┐
+│   INGEST    │────▶│ TRANSFORM    │────▶│  COMPILE    │────▶│   OUTPUT    │
+│             │     │              │     │              │     │             │
+│ Scrape ATS  │     │ Parse Resume │     │ Generate PDF │     │ LaTeX/.tex  │
+│ Thread Pool │     │ Tailor with  │     │ via pdflatex │     │ + .pdf      │
+│ + DB writes │     │ LLM (Ollama) │     │              │     │             │
+└─────────────┘     └──────────────┘     └──────────────┘     └─────────────┘
+      │                    │                     │                   │
+      ▼                    ▼                     ▼                   ▼
+   SQLite DB          JSON Schema           LaTeX Template      Resume PDF
+  (12,000+ jobs)      (Structured)          (Jinja2 Render)      (Ready to Submit)
+```
+
+---
+
+## Project Structure
+
+```
+JobFlow/
+├── backend.py                 # FastAPI server (port 8000) serving job index
+├── ingest.py                  # Multi-threaded scraper orchestrator
+├── main.py                    # CLI for parsing and tailoring resumes
+├── readme.md                  # Project documentation
+├── requirements.txt           # Python dependencies
+│
+├── config/
+│   └── default.yaml          # LLM config (model, tailoring rules, output limits)
+│
+├── data/
+│   ├── input.txt             # Sample raw resume text
+│   └── test_job.txt          # Sample job posting for testing
+│
+├── resume/                    # Resume tailoring module
+│   ├── __init__.py
+│   ├── llm.py                # Ollama integration (call_llm, build_prompt)
+│   └── templates/
+│       └── resume.tex.j2     # Jinja2 LaTeX template for PDF generation
+│
+├── frontend/                  # React + Vite web interface
+│   ├── src/
+│   │   ├── App.jsx           # Main React application
+│   │   ├── api.js            # Fetch wrapper for backend endpoints
+│   │   ├── main.jsx          # Entry point
+│   │   ├── components/       # React components
+│   │   │   ├── JobList.jsx   # Job listings table/cards
+│   │   │   ├── JobDetail.jsx # Detail view + tailor button
+│   │   │   └── ErrorBoundary.jsx # Error handling wrapper
+│   │   └── styles/           # CSS modules
+│   │       ├── app.css
+│   │       ├── job-list.css
+│   │       └── job-detail.css
+│   ├── index.html
+│   ├── vite.config.js
+│   └── package.json
+│
+├── output/                    # Generated resumes (gitignored)
+│   ├── company_role_resume.tex
+│   └── company_role_resume.pdf
+│
+└── .venv/                     # Python virtual environment
+```
+
+---
+
+## Workflow Layers
+
+The pipeline has distinct responsibility layers:
+
+| Layer | Tool/Technology | Input | Output | Key Logic |
+| :--- | :--- | :--- | :--- | :--- |
+| **Ingest** | Python + Requests/Playwright | ATS API/Web | SQLite (jobflow.db) | ThreadPoolExecutor, field mapping, conflict resolution |
+| **Transform** | Ollama (mistral:7b-instruct) | Resume text + Job posting + Config | JSON schema (structured) | LLM prompt engineering, bullet validation, skill matching |
+| **Compile** | Jinja2 + pdflatex | JSON data + LaTeX template | Resume.pdf | Template rendering, PDF generation |
+| **Serve** | FastAPI + React | SQLite + User actions | Web UI + API responses | Job browsing, filtering, triggering tailoring |
+
+---
+
 ## AI Integration
 
 JobFlow avoids the latency and privacy risks of cloud-based APIs by leveraging local inference on Apple Silicon.
@@ -74,6 +156,35 @@ JobFlow is currently an MVP in Phase 3 of development.
 * **Phase 4: Resume Precision** (In Progress) — Refining LLM prompt engineering to achieve higher-fidelity tailoring.
 * **Phase 5: Ranking Algorithms** (Planned) — Exploring weighted scoring based on keyword density and user signals.
 * **Phase 6: Binary-Free PDF Generation** (Planned) — Finalizing the transition from LaTeX to pure Python ReportLab for easier distribution.
+
+---
+
+## In-Progress: ATS API Repository
+
+Beyond this project, I'm actively maintaining a living repository of job scraping APIs and their status. **Many ATS platforms change their API structures frequently**, breaking existing scrapers. This parallel effort tracks:
+
+- **Current & Working APIs** — Greenhouse, Ashby, Lever, and Workday endpoints with active support
+- **Deprecated/Broken APIs** — Historical APIs and endpoints that no longer work
+- **Maintenance Strategy** — Regular audits and contributor-driven fixes
+- **Integration Guide** — How to plug new/updated APIs into JobFlow
+
+This repository serves as both a knowledge base and a scalable way to handle the constant evolution of job board infrastructure.
+
+---
+
+## User Interface
+
+The JobFlow frontend provides an intuitive interface for job discovery and resume tailoring:
+
+![JobFlow UI - Job Listings](docs/jobflow-ui.png)
+
+**Features shown:**
+- **Full-text search** across job titles and keywords
+- **Company filtering** to focus on specific organizations
+- **Location filtering** for geographical preferences
+- **Live job count** showing database size
+- **Job cards** with company, location, date posted, and description snippet
+- **"View & Tailor Resume"** button to generate tailored versions for each posting
 
 ---
 
